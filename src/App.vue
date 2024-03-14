@@ -3,7 +3,7 @@ import { ref } from "vue"; // importation de la méthode ref() pour la création
 
 import { records } from "@/assets/js/allRecords"; // importation du module
 
-const albums = ref(records);
+const albums = ref(records); // referencer le module (le tableau d'objets)
 
 const album = ref(records[8]); // afficher l'album à l'index 8
 
@@ -21,6 +21,10 @@ const stockMoins = (album) => {
 };
 
 console.log(album.value.stock);
+
+const getCoverUrl = (album) => {
+  return album.coverUrl ?? "src/assets/img/default.jpg";
+};
 </script>
 
 <template>
@@ -88,7 +92,11 @@ console.log(album.value.stock);
 
       <main class="bg-white py-5 ml-6 basis-auto">
         <!-- component -->
-        <section class="text-gray-600 body-font" v-for="album in albums">
+        <section
+          class="text-gray-600 body-font"
+          v-for="album in albums"
+          :key="album.id"
+        >
           <!-- one records -->
           <div class="container px-5 mx-auto">
             <div
@@ -97,7 +105,8 @@ console.log(album.value.stock);
               <div
                 class="sm:w-44 sm:h-44 lg:w-40 lg:h-40 sm:mr-10 inline-flex items-center justify-center flex-shrink-0"
               >
-                <img :src="album.coverUrl" />
+                <img :src="getCoverUrl(album)" />
+                <!------Equivalent à <img :src="album.coverUrl ?? 'src/assets/img/default.jpg'"/>-->
               </div>
               <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
                 <h1 class="text-black text-2xl title-font font-bold mb-2">
