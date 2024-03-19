@@ -5,7 +5,7 @@ import { records } from "@/assets/js/allRecords"; // importation du module
 
 const albums = ref(records); // referencer le module (le tableau d'objets)
 
-const album = ref(records[8]); // afficher l'album à l'index 8
+const album = ref(records[8]); // on stocke l'album à l'index 8 dans la variable album
 
 const title = ref("DISCO CCI");
 
